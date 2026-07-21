@@ -26,8 +26,7 @@
 | «proceso participativo», «mesas», «talleres», «dinamización de agentes», «foro» | Participación | PB_09 |
 | «comunicación», «contenidos», «redes sociales», «gabinete», «community» | Comunicación | PB_10 |
 
-CPV orientativos frecuentes: 79
-* (servicios de consultoría/apoyo empresarial), 793* (estudios/publicidad/comunicación), 7999* (varios servicios), 72* (TI, en plataformas), 92* (cultura/turismo en algunos órganos). El CPV orienta, el objeto decide.
+CPV orientativos frecuentes: `79*` (servicios de consultoría/apoyo empresarial), `793*` (estudios/publicidad/comunicación), `7999*` (varios servicios), `72*` (TI, en plataformas), `92*` (cultura/turismo en algunos órganos). El CPV orienta, el objeto decide.
 
 ## 2. Contratos híbridos (reglas)
 

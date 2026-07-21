@@ -1,0 +1,1923 @@
+{
+  "project": "Sistema experto de licitaciones turísticas",
+  "version": "1.0.0",
+  "language": "es-ES",
+  "generated": "2026-07-21",
+  "root": "claude_licitaciones/",
+  "notes": "Fuente única de metadatos para el Knowledge Router. Mantener sincronizado con FILE_INDEX.md y CHANGELOG.md.",
+  "modules": [
+    {
+      "id": "readme_general",
+      "file": "00_README/README_GENERAL.md",
+      "type": "readme",
+      "purpose": "Presentación general del sistema y de su filosofía de uso.",
+      "activation_keywords": [
+        "readme",
+        "introducción",
+        "qué es"
+      ],
+      "used_by": [],
+      "dependencies": [],
+      "priority": "low",
+      "context_cost": "low",
+      "load_when": "Al instalar, aprender a usar o mantener el sistema.",
+      "do_not_load_when": "Durante el trabajo operativo sobre un expediente."
+    },
+    {
+      "id": "instalacion",
+      "file": "00_README/INSTALACION_EN_CLAUDE_PROJECTS.md",
+      "type": "readme",
+      "purpose": "Pasos para instalar el sistema en Claude Projects con carga selectiva.",
+      "activation_keywords": [
+        "instalación",
+        "setup",
+        "claude projects"
+      ],
+      "used_by": [],
+      "dependencies": [
+        "manifest"
+      ],
+      "priority": "low",
+      "context_cost": "low",
+      "load_when": "Al instalar, aprender a usar o mantener el sistema.",
+      "do_not_load_when": "Durante el trabajo operativo sobre un expediente."
+    },
+    {
+      "id": "guia_uso",
+      "file": "00_README/GUIA_DE_USO.md",
+      "type": "readme",
+      "purpose": "Manual de uso diario: comandos, fases y ejemplos de peticiones.",
+      "activation_keywords": [
+        "guía",
+        "cómo usar",
+        "manual"
+      ],
+      "used_by": [],
+      "dependencies": [
+        "wf_master"
+      ],
+      "priority": "low",
+      "context_cost": "low",
+      "load_when": "Al instalar, aprender a usar o mantener el sistema.",
+      "do_not_load_when": "Durante el trabajo operativo sobre un expediente."
+    },
+    {
+      "id": "mapa",
+      "file": "00_README/MAPA_DEL_SISTEMA.md",
+      "type": "readme",
+      "purpose": "Arquitectura completa del sistema y relaciones entre módulos.",
+      "activation_keywords": [
+        "mapa",
+        "arquitectura",
+        "estructura"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [],
+      "priority": "low",
+      "context_cost": "low",
+      "load_when": "Al instalar, aprender a usar o mantener el sistema.",
+      "do_not_load_when": "Durante el trabajo operativo sobre un expediente."
+    },
+    {
+      "id": "instrucciones",
+      "file": "01_PROJECT_INSTRUCTIONS/CLAUDE_PROJECT_INSTRUCTIONS.md",
+      "type": "instruction",
+      "purpose": "Instrucciones centrales recomendadas para copiar en el Project.",
+      "activation_keywords": [
+        "instrucciones",
+        "rol",
+        "sistema"
+      ],
+      "used_by": [],
+      "dependencies": [
+        "reglas"
+      ],
+      "priority": "critical",
+      "context_cost": "medium",
+      "load_when": "Siempre activo como instrucciones del Project.",
+      "do_not_load_when": "Nunca se descarga; es la capa de gobierno."
+    },
+    {
+      "id": "version_corta",
+      "file": "01_PROJECT_INSTRUCTIONS/VERSION_CORTA.md",
+      "type": "instruction",
+      "purpose": "Versión mínima de las instrucciones para contextos ajustados.",
+      "activation_keywords": [
+        "instrucciones cortas"
+      ],
+      "used_by": [],
+      "dependencies": [
+        "reglas"
+      ],
+      "priority": "critical",
+      "context_cost": "medium",
+      "load_when": "Siempre activo como instrucciones del Project.",
+      "do_not_load_when": "Nunca se descarga; es la capa de gobierno."
+    },
+    {
+      "id": "version_completa",
+      "file": "01_PROJECT_INSTRUCTIONS/VERSION_COMPLETA.md",
+      "type": "instruction",
+      "purpose": "Versión extendida de las instrucciones, para auditoría y consulta.",
+      "activation_keywords": [
+        "instrucciones completas"
+      ],
+      "used_by": [],
+      "dependencies": [
+        "reglas"
+      ],
+      "priority": "critical",
+      "context_cost": "medium",
+      "load_when": "Siempre activo como instrucciones del Project.",
+      "do_not_load_when": "Nunca se descarga; es la capa de gobierno."
+    },
+    {
+      "id": "reglas",
+      "file": "01_PROJECT_INSTRUCTIONS/REGLAS_INVIOLABLES.md",
+      "type": "instruction",
+      "purpose": "Las 20 reglas transversales del sistema; fuente única de verdad.",
+      "activation_keywords": [
+        "reglas",
+        "prohibiciones",
+        "no inventar",
+        "sobres"
+      ],
+      "used_by": [
+        "todas las skills"
+      ],
+      "dependencies": [],
+      "priority": "critical",
+      "context_cost": "medium",
+      "load_when": "Siempre activo como instrucciones del Project.",
+      "do_not_load_when": "Nunca se descarga; es la capa de gobierno."
+    },
+    {
+      "id": "router",
+      "file": "02_SKILLS/00_KNOWLEDGE_ROUTER.md",
+      "type": "skill",
+      "purpose": "Clasifica la petición, selecciona Skills y documentos, controla el orden de fases.",
+      "activation_keywords": [
+        "router",
+        "qué cargar",
+        "orquestación"
+      ],
+      "used_by": [],
+      "dependencies": [
+        "manifest",
+        "wf_master"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "analyzer",
+      "file": "02_SKILLS/01_EXPEDIENT_ANALYZER.md",
+      "type": "skill",
+      "purpose": "Extrae y estructura todos los elementos del expediente (PCAP, PPT, anexos).",
+      "activation_keywords": [
+        "análisis",
+        "expediente",
+        "pliego",
+        "pcap",
+        "ppt",
+        "extracción"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [
+        "k_analisis",
+        "tpl_extraccion",
+        "tpl_resumen"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "budget",
+      "file": "02_SKILLS/02_BUDGET_BUILDER.md",
+      "type": "skill",
+      "purpose": "Convierte obligaciones del pliego en costes, escenarios y márgenes.",
+      "activation_keywords": [
+        "presupuesto",
+        "costes",
+        "viabilidad",
+        "margen",
+        "tarifas"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [
+        "k_presupuesto",
+        "tpl_base_economica"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "memory",
+      "file": "02_SKILLS/03_MEMORY_WRITER.md",
+      "type": "skill",
+      "purpose": "Redacta la memoria técnica trazada contra los criterios de adjudicación.",
+      "activation_keywords": [
+        "memoria",
+        "redactar",
+        "oferta técnica",
+        "índice"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [
+        "k_memoria",
+        "k_evidencias",
+        "tpl_memoria",
+        "scoring"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "scoring",
+      "file": "02_SKILLS/04_SCORING_OPTIMIZER.md",
+      "type": "skill",
+      "purpose": "Matriz criterio-evidencia-acción y estrategia de puntuación sin mezclar sobres.",
+      "activation_keywords": [
+        "criterios",
+        "puntos",
+        "puntuación",
+        "scoring",
+        "mejoras"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_juicio_valor",
+        "k_criterios_auto",
+        "tpl_matriz_criterios"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "redteam",
+      "file": "02_SKILLS/05_RED_TEAM_REVIEWER.md",
+      "type": "skill",
+      "purpose": "Revisión adversarial de la memoria con hallazgos clasificados por severidad.",
+      "activation_keywords": [
+        "red team",
+        "revisión",
+        "auditoría",
+        "revisar memoria"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [
+        "k_calidad",
+        "tpl_red_team",
+        "chk_red_team"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "visual",
+      "file": "02_SKILLS/06_VISUAL_DESIGNER.md",
+      "type": "skill",
+      "purpose": "Genera diagramas, cronogramas, RACI y SVG con valor informativo.",
+      "activation_keywords": [
+        "diagrama",
+        "svg",
+        "gantt",
+        "organigrama",
+        "visual",
+        "gráfico"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_visuales"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "governance",
+      "file": "02_SKILLS/07_GOVERNANCE_DESIGNER.md",
+      "type": "skill",
+      "purpose": "Define roles, comités, escalado y circuitos de aprobación del contrato.",
+      "activation_keywords": [
+        "gobernanza",
+        "comités",
+        "roles",
+        "raci",
+        "coordinación"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_gobernanza",
+        "tpl_raci"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "planning",
+      "file": "02_SKILLS/08_PLANNING_ENGINE.md",
+      "type": "skill",
+      "purpose": "Desarrolla fases, dependencias, ruta crítica, hitos y holguras.",
+      "activation_keywords": [
+        "plan de trabajo",
+        "cronograma",
+        "fases",
+        "hitos",
+        "planificación"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_planificacion",
+        "tpl_plan",
+        "tpl_cronograma"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "risk",
+      "file": "02_SKILLS/09_RISK_MANAGER.md",
+      "type": "skill",
+      "purpose": "Matriz de riesgos con causa, probabilidad, impacto, prevención y contingencia.",
+      "activation_keywords": [
+        "riesgos",
+        "contingencia",
+        "matriz de riesgos"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_riesgos",
+        "tpl_riesgos"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "deliverables",
+      "file": "02_SKILLS/10_DELIVERABLES_GENERATOR.md",
+      "type": "skill",
+      "purpose": "Fichas de entregables con criterios de aceptación y validación.",
+      "activation_keywords": [
+        "entregables",
+        "productos",
+        "criterios de aceptación"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_entregables",
+        "tpl_entregables"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "kpi",
+      "file": "02_SKILLS/11_KPI_GENERATOR.md",
+      "type": "skill",
+      "purpose": "Indicadores con fórmula, fuente, meta, umbral y acción correctora.",
+      "activation_keywords": [
+        "kpi",
+        "indicadores",
+        "seguimiento",
+        "metas"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_kpis",
+        "tpl_kpis"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "playbooks_skill",
+      "file": "02_SKILLS/12_TOURISM_PLAYBOOKS.md",
+      "type": "skill",
+      "purpose": "Selecciona y aplica el playbook turístico que corresponde al objeto del contrato.",
+      "activation_keywords": [
+        "turismo",
+        "dti",
+        "observatorio",
+        "destino",
+        "playbook"
+      ],
+      "used_by": [
+        "router",
+        "memory",
+        "analyzer"
+      ],
+      "dependencies": [
+        "pb_11"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "procurement",
+      "file": "02_SKILLS/13_SPANISH_PROCUREMENT_EXPERT.md",
+      "type": "skill",
+      "purpose": "Interpreta el expediente conforme a la LCSP sin sustituir asesoramiento jurídico.",
+      "activation_keywords": [
+        "lcsp",
+        "jurídico",
+        "legal",
+        "recurso",
+        "procedimiento",
+        "normativa"
+      ],
+      "used_by": [
+        "router",
+        "analyzer"
+      ],
+      "dependencies": [
+        "k_lcsp"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "editorial",
+      "file": "02_SKILLS/14_EDITORIAL_WRITER.md",
+      "type": "skill",
+      "purpose": "Mejora claridad, cohesión y tono sin alterar el significado técnico.",
+      "activation_keywords": [
+        "editar",
+        "pulir",
+        "estilo",
+        "redacción",
+        "claridad"
+      ],
+      "used_by": [
+        "router",
+        "memory"
+      ],
+      "dependencies": [
+        "k_editorial"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Cuando el Router activa la Skill por fase o palabras clave.",
+      "do_not_load_when": "Cuando la petición pertenece a otra responsabilidad."
+    },
+    {
+      "id": "wf01",
+      "file": "03_WORKFLOWS/WF_01_RECEPCION_EXPEDIENTE.md",
+      "type": "workflow",
+      "purpose": "Recepción del expediente e inventario documental (estados 0-1).",
+      "activation_keywords": [
+        "recepción",
+        "inventario",
+        "documentos subidos"
+      ],
+      "used_by": [
+        "router",
+        "analyzer"
+      ],
+      "dependencies": [
+        "chk_documentos"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf02",
+      "file": "03_WORKFLOWS/WF_02_ANALISIS_DOCUMENTAL.md",
+      "type": "workflow",
+      "purpose": "Extracción rápida y análisis completo del expediente (estados 2-3).",
+      "activation_keywords": [
+        "análisis documental",
+        "extracción rápida"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [
+        "tpl_extraccion",
+        "tpl_resumen"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf03",
+      "file": "03_WORKFLOWS/WF_03_SOLVENCIA.md",
+      "type": "workflow",
+      "purpose": "Validación de solvencia económica y técnica y del personal (estados 4-5).",
+      "activation_keywords": [
+        "solvencia",
+        "habilitación",
+        "clasificación",
+        "personal"
+      ],
+      "used_by": [
+        "analyzer",
+        "procurement"
+      ],
+      "dependencies": [
+        "k_solvencia",
+        "tpl_matriz_solvencia",
+        "chk_solvencia"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf04",
+      "file": "03_WORKFLOWS/WF_04_CRITERIOS_ADJUDICACION.md",
+      "type": "workflow",
+      "purpose": "Análisis de criterios de adjudicación y umbrales (estado 6).",
+      "activation_keywords": [
+        "criterios",
+        "baremo",
+        "umbral"
+      ],
+      "used_by": [
+        "scoring"
+      ],
+      "dependencies": [
+        "tpl_matriz_criterios"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf05",
+      "file": "03_WORKFLOWS/WF_05_VIABILIDAD_ECONOMICA.md",
+      "type": "workflow",
+      "purpose": "Identificación de costes y preguntas internas (estados 7-8).",
+      "activation_keywords": [
+        "viabilidad",
+        "costes",
+        "preguntas internas"
+      ],
+      "used_by": [
+        "budget"
+      ],
+      "dependencies": [
+        "chk_costes"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf06",
+      "file": "03_WORKFLOWS/WF_06_PRESUPUESTO.md",
+      "type": "workflow",
+      "purpose": "Construcción de la base económica y escenarios (estado 9).",
+      "activation_keywords": [
+        "presupuesto",
+        "base económica",
+        "escenarios"
+      ],
+      "used_by": [
+        "budget"
+      ],
+      "dependencies": [
+        "tpl_base_economica"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf07",
+      "file": "03_WORKFLOWS/WF_07_MEMORIA_TECNICA.md",
+      "type": "workflow",
+      "purpose": "Estrategia de puntuación, índice y redacción de memoria (estados 10-12).",
+      "activation_keywords": [
+        "memoria",
+        "índice",
+        "redacción"
+      ],
+      "used_by": [
+        "memory",
+        "scoring"
+      ],
+      "dependencies": [
+        "tpl_memoria",
+        "chk_memoria"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf08",
+      "file": "03_WORKFLOWS/WF_08_MEJORAS.md",
+      "type": "workflow",
+      "purpose": "Tratamiento de mejoras y criterios automáticos sin mezclar sobres.",
+      "activation_keywords": [
+        "mejoras",
+        "sobre 3",
+        "criterios automáticos"
+      ],
+      "used_by": [
+        "scoring",
+        "budget"
+      ],
+      "dependencies": [
+        "chk_sobres"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf09",
+      "file": "03_WORKFLOWS/WF_09_REVISION_RED_TEAM.md",
+      "type": "workflow",
+      "purpose": "Revisión de cobertura y Red Team con correcciones (estados 13-15).",
+      "activation_keywords": [
+        "red team",
+        "revisión final"
+      ],
+      "used_by": [
+        "redteam"
+      ],
+      "dependencies": [
+        "tpl_red_team",
+        "chk_red_team"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf10",
+      "file": "03_WORKFLOWS/WF_10_CIERRE_Y_ENTREGA.md",
+      "type": "workflow",
+      "purpose": "Validación formal y cierre del expediente (estados 16-17).",
+      "activation_keywords": [
+        "cierre",
+        "entrega",
+        "presentación"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [
+        "chk_presentacion"
+      ],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "wf_master",
+      "file": "03_WORKFLOWS/WF_MASTER.md",
+      "type": "workflow",
+      "purpose": "Máquina de estados 0-17: entradas, salidas, bloqueos y transiciones permitidas.",
+      "activation_keywords": [
+        "workflow maestro",
+        "estados",
+        "fases"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al entrar en la fase que gobierna.",
+      "do_not_load_when": "En fases distintas a la que gobierna."
+    },
+    {
+      "id": "k_analisis",
+      "file": "04_KNOWLEDGE/01_METODOLOGIA_ANALISIS_EXPEDIENTES.md",
+      "type": "knowledge",
+      "purpose": "Método completo de lectura y explotación de expedientes de contratación.",
+      "activation_keywords": [
+        "metodología",
+        "análisis de pliegos"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_memoria",
+      "file": "04_KNOWLEDGE/02_ARQUITECTURA_MEMORIA_TECNICA.md",
+      "type": "knowledge",
+      "purpose": "Estructura, arquitectura y patrones de memorias técnicas ganadoras.",
+      "activation_keywords": [
+        "arquitectura memoria",
+        "estructura memoria",
+        "índice"
+      ],
+      "used_by": [
+        "memory"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_evidencias",
+      "file": "04_KNOWLEDGE/03_INGENIERIA_DE_EVIDENCIAS.md",
+      "type": "knowledge",
+      "purpose": "Cómo transformar afirmaciones en evidencias verificables y puntuables.",
+      "activation_keywords": [
+        "evidencias",
+        "acreditación",
+        "trazabilidad"
+      ],
+      "used_by": [
+        "memory",
+        "scoring"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_entregables",
+      "file": "04_KNOWLEDGE/04_INGENIERIA_DE_ENTREGABLES.md",
+      "type": "knowledge",
+      "purpose": "Diseño de entregables con contenido, aceptación y validación.",
+      "activation_keywords": [
+        "entregables",
+        "productos"
+      ],
+      "used_by": [
+        "deliverables"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_juicio_valor",
+      "file": "04_KNOWLEDGE/05_OPTIMIZACION_JUICIO_VALOR.md",
+      "type": "knowledge",
+      "purpose": "Técnicas para maximizar puntuación en criterios sujetos a juicio de valor.",
+      "activation_keywords": [
+        "juicio de valor",
+        "puntuación subjetiva"
+      ],
+      "used_by": [
+        "scoring",
+        "memory"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_criterios_auto",
+      "file": "04_KNOWLEDGE/06_CRITERIOS_AUTOMATICOS_Y_MEJORAS.md",
+      "type": "knowledge",
+      "purpose": "Criterios automáticos, fórmulas de precio, mejoras y separación de sobres.",
+      "activation_keywords": [
+        "fórmula de precio",
+        "mejoras",
+        "criterios automáticos",
+        "sobres"
+      ],
+      "used_by": [
+        "scoring",
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_solvencia",
+      "file": "04_KNOWLEDGE/07_SOLVENCIA_Y_ACREDITACION.md",
+      "type": "knowledge",
+      "purpose": "Solvencia económica y técnica: medios, umbrales y acreditación.",
+      "activation_keywords": [
+        "solvencia",
+        "clasificación",
+        "medios de acreditación"
+      ],
+      "used_by": [
+        "analyzer",
+        "procurement"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_personal",
+      "file": "04_KNOWLEDGE/08_PERSONAL_Y_EQUIPO.md",
+      "type": "knowledge",
+      "purpose": "Requisitos de personal, adscripción de medios y perfiles de equipo.",
+      "activation_keywords": [
+        "personal",
+        "equipo",
+        "adscripción",
+        "perfiles"
+      ],
+      "used_by": [
+        "analyzer",
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_presupuesto",
+      "file": "04_KNOWLEDGE/09_PRESUPUESTACION_Y_RENTABILIDAD.md",
+      "type": "knowledge",
+      "purpose": "Método de presupuestación, escenarios, márgenes y baja temeraria.",
+      "activation_keywords": [
+        "presupuestación",
+        "rentabilidad",
+        "margen",
+        "baja"
+      ],
+      "used_by": [
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_riesgos",
+      "file": "04_KNOWLEDGE/10_RIESGOS_CONTRACTUALES.md",
+      "type": "knowledge",
+      "purpose": "Catálogo de riesgos contractuales y su tratamiento.",
+      "activation_keywords": [
+        "riesgos",
+        "penalidades",
+        "modificados"
+      ],
+      "used_by": [
+        "risk",
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_gobernanza",
+      "file": "04_KNOWLEDGE/11_GOBERNANZA_Y_COORDINACION.md",
+      "type": "knowledge",
+      "purpose": "Modelos de gobernanza, comités y coordinación con el órgano de contratación.",
+      "activation_keywords": [
+        "gobernanza",
+        "comités",
+        "interlocución"
+      ],
+      "used_by": [
+        "governance"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_planificacion",
+      "file": "04_KNOWLEDGE/12_PLANIFICACION_Y_CRONOGRAMAS.md",
+      "type": "knowledge",
+      "purpose": "Planificación, dependencias, ruta crítica y cronogramas defendibles.",
+      "activation_keywords": [
+        "planificación",
+        "cronograma",
+        "ruta crítica"
+      ],
+      "used_by": [
+        "planning"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_kpis",
+      "file": "04_KNOWLEDGE/13_KPIS_Y_SEGUIMIENTO.md",
+      "type": "knowledge",
+      "purpose": "Diseño de indicadores y sistemas de seguimiento del contrato.",
+      "activation_keywords": [
+        "kpis",
+        "indicadores",
+        "cuadro de mando"
+      ],
+      "used_by": [
+        "kpi"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_calidad",
+      "file": "04_KNOWLEDGE/14_CALIDAD_Y_CONTROL.md",
+      "type": "knowledge",
+      "purpose": "Control de calidad de ofertas: cobertura, coherencia y cumplimiento formal.",
+      "activation_keywords": [
+        "calidad",
+        "control",
+        "verificación"
+      ],
+      "used_by": [
+        "redteam"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_transferencia",
+      "file": "04_KNOWLEDGE/15_TRANSFERENCIA_Y_CIERRE.md",
+      "type": "knowledge",
+      "purpose": "Transferencia de conocimiento, devolución y cierre de contratos.",
+      "activation_keywords": [
+        "transferencia",
+        "cierre de contrato",
+        "devolución"
+      ],
+      "used_by": [
+        "memory",
+        "deliverables"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_visuales",
+      "file": "04_KNOWLEDGE/16_VISUALES_Y_DIAGRAMAS.md",
+      "type": "knowledge",
+      "purpose": "Criterios y técnicas para visuales que aportan puntuación.",
+      "activation_keywords": [
+        "visuales",
+        "diagramas",
+        "svg",
+        "gantt"
+      ],
+      "used_by": [
+        "visual"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_editorial",
+      "file": "04_KNOWLEDGE/17_REDACCION_EDITORIAL.md",
+      "type": "knowledge",
+      "purpose": "Estilo editorial: claridad, verbos de acción, jerarquía y tono ejecutivo.",
+      "activation_keywords": [
+        "estilo",
+        "redacción",
+        "tono"
+      ],
+      "used_by": [
+        "editorial",
+        "memory"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_lcsp",
+      "file": "04_KNOWLEDGE/18_CONTRATACION_PUBLICA_ESPAÑOLA.md",
+      "type": "knowledge",
+      "purpose": "Marco LCSP: procedimientos, plazos, sobres, solvencia, bajas y recursos.",
+      "activation_keywords": [
+        "lcsp",
+        "ley de contratos",
+        "normativa",
+        "jurídico"
+      ],
+      "used_by": [
+        "procurement"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando la materia del documento es objeto directo de la petición.",
+      "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "pb_01",
+      "file": "05_PLAYBOOKS_TURISMO/PB_01_DESTINOS_TURISTICOS_INTELIGENTES.md",
+      "type": "playbook",
+      "purpose": "Patrones para contratos de Destinos Turísticos Inteligentes (DTI).",
+      "activation_keywords": [
+        "dti",
+        "destino inteligente",
+        "segittur"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_02",
+      "file": "05_PLAYBOOKS_TURISMO/PB_02_PLANIFICACION_TURISTICA.md",
+      "type": "playbook",
+      "purpose": "Patrones para planes estratégicos y de sostenibilidad turística.",
+      "activation_keywords": [
+        "plan turístico",
+        "psts",
+        "planificación turística"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_03",
+      "file": "05_PLAYBOOKS_TURISMO/PB_03_MARKETING_Y_PROMOCION.md",
+      "type": "playbook",
+      "purpose": "Patrones para contratos de marketing y promoción de destinos.",
+      "activation_keywords": [
+        "marketing",
+        "promoción",
+        "campaña",
+        "marca"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_04",
+      "file": "05_PLAYBOOKS_TURISMO/PB_04_OBSERVATORIOS_TURISTICOS.md",
+      "type": "playbook",
+      "purpose": "Patrones para observatorios e inteligencia turística.",
+      "activation_keywords": [
+        "observatorio",
+        "inteligencia turística",
+        "datos"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_05",
+      "file": "05_PLAYBOOKS_TURISMO/PB_05_EVENTOS_Y_ACCIONES_PRESENCIALES.md",
+      "type": "playbook",
+      "purpose": "Patrones para eventos, ferias y acciones presenciales.",
+      "activation_keywords": [
+        "eventos",
+        "ferias",
+        "fam trips",
+        "acciones"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_06",
+      "file": "05_PLAYBOOKS_TURISMO/PB_06_TRANSFORMACION_DIGITAL.md",
+      "type": "playbook",
+      "purpose": "Patrones para transformación digital de destinos y empresas turísticas.",
+      "activation_keywords": [
+        "transformación digital",
+        "digitalización"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_07",
+      "file": "05_PLAYBOOKS_TURISMO/PB_07_FONDOS_EUROPEOS.md",
+      "type": "playbook",
+      "purpose": "Patrones para asistencias vinculadas a fondos europeos (PRTR, FEDER).",
+      "activation_keywords": [
+        "fondos europeos",
+        "prtr",
+        "feder",
+        "next generation"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_08",
+      "file": "05_PLAYBOOKS_TURISMO/PB_08_OFICINAS_TECNICAS.md",
+      "type": "playbook",
+      "purpose": "Patrones para oficinas técnicas y asistencias técnicas continuadas.",
+      "activation_keywords": [
+        "oficina técnica",
+        "asistencia técnica"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_09",
+      "file": "05_PLAYBOOKS_TURISMO/PB_09_PARTICIPACION_Y_TALLERES.md",
+      "type": "playbook",
+      "purpose": "Patrones para procesos participativos y talleres.",
+      "activation_keywords": [
+        "participación",
+        "talleres",
+        "dinamización"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_10",
+      "file": "05_PLAYBOOKS_TURISMO/PB_10_COMUNICACION_Y_CONTENIDOS.md",
+      "type": "playbook",
+      "purpose": "Patrones para comunicación, contenidos y redes de destinos.",
+      "activation_keywords": [
+        "comunicación",
+        "contenidos",
+        "redes sociales"
+      ],
+      "used_by": [
+        "playbooks_skill"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "pb_11",
+      "file": "05_PLAYBOOKS_TURISMO/PB_11_PATRONES_POR_TIPO_DE_CONTRATO.md",
+      "type": "playbook",
+      "purpose": "Tabla de enrutado: qué playbook aplicar según el objeto del contrato.",
+      "activation_keywords": [
+        "qué playbook",
+        "tipología",
+        "clasificar contrato"
+      ],
+      "used_by": [
+        "playbooks_skill",
+        "router"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "high",
+      "load_when": "Cuando el objeto del contrato coincide con la tipología del playbook.",
+      "do_not_load_when": "Con contratos de otra tipología; nunca cargar varios playbooks a la vez sin motivo."
+    },
+    {
+      "id": "tpl_extraccion",
+      "file": "06_TEMPLATES/TPL_EXTRACCION_RAPIDA.md",
+      "type": "template",
+      "purpose": "Formato de la extracción rápida obligatoria de 6 puntos.",
+      "activation_keywords": [
+        "extracción rápida"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_resumen",
+      "file": "06_TEMPLATES/TPL_RESUMEN_EXPEDIENTE.md",
+      "type": "template",
+      "purpose": "Formato del análisis completo del expediente (secciones 0-10).",
+      "activation_keywords": [
+        "resumen expediente",
+        "análisis completo"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_matriz_requisitos",
+      "file": "06_TEMPLATES/TPL_MATRIZ_REQUISITOS.md",
+      "type": "template",
+      "purpose": "Matriz requisito-fuente-cumplimiento-evidencia.",
+      "activation_keywords": [
+        "matriz requisitos"
+      ],
+      "used_by": [
+        "analyzer",
+        "redteam"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_matriz_solvencia",
+      "file": "06_TEMPLATES/TPL_MATRIZ_SOLVENCIA.md",
+      "type": "template",
+      "purpose": "Matriz de solvencia exigida frente a acreditación disponible.",
+      "activation_keywords": [
+        "matriz solvencia"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_matriz_personal",
+      "file": "06_TEMPLATES/TPL_MATRIZ_PERSONAL.md",
+      "type": "template",
+      "purpose": "Matriz de personal exigido frente a disponible.",
+      "activation_keywords": [
+        "matriz personal"
+      ],
+      "used_by": [
+        "analyzer",
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_matriz_criterios",
+      "file": "06_TEMPLATES/TPL_MATRIZ_CRITERIOS.md",
+      "type": "template",
+      "purpose": "Matriz criterio-puntos-evidencia-cobertura-acción-prioridad.",
+      "activation_keywords": [
+        "matriz criterios"
+      ],
+      "used_by": [
+        "scoring"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_base_economica",
+      "file": "06_TEMPLATES/TPL_BASE_ECONOMICA.md",
+      "type": "template",
+      "purpose": "Estructura de la base económica con escenarios y sensibilidades.",
+      "activation_keywords": [
+        "base económica",
+        "presupuesto"
+      ],
+      "used_by": [
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_memoria",
+      "file": "06_TEMPLATES/TPL_MEMORIA_TECNICA.md",
+      "type": "template",
+      "purpose": "Esqueleto de memoria técnica y ficha estándar de apartado.",
+      "activation_keywords": [
+        "plantilla memoria"
+      ],
+      "used_by": [
+        "memory"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_plan",
+      "file": "06_TEMPLATES/TPL_PLAN_DE_TRABAJO.md",
+      "type": "template",
+      "purpose": "Formato del plan de trabajo por fases y actividades.",
+      "activation_keywords": [
+        "plan de trabajo"
+      ],
+      "used_by": [
+        "planning"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_cronograma",
+      "file": "06_TEMPLATES/TPL_CRONOGRAMA.md",
+      "type": "template",
+      "purpose": "Formato de cronograma (tabla y Gantt mermaid).",
+      "activation_keywords": [
+        "cronograma",
+        "gantt"
+      ],
+      "used_by": [
+        "planning",
+        "visual"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_raci",
+      "file": "06_TEMPLATES/TPL_RACI.md",
+      "type": "template",
+      "purpose": "Formato de matriz RACI.",
+      "activation_keywords": [
+        "raci"
+      ],
+      "used_by": [
+        "governance"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_riesgos",
+      "file": "06_TEMPLATES/TPL_RIESGOS.md",
+      "type": "template",
+      "purpose": "Formato de matriz de riesgos de 9 columnas.",
+      "activation_keywords": [
+        "matriz riesgos"
+      ],
+      "used_by": [
+        "risk"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_kpis",
+      "file": "06_TEMPLATES/TPL_KPIS.md",
+      "type": "template",
+      "purpose": "Formato de ficha y cuadro de indicadores.",
+      "activation_keywords": [
+        "plantilla kpis"
+      ],
+      "used_by": [
+        "kpi"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_entregables",
+      "file": "06_TEMPLATES/TPL_ENTREGABLES.md",
+      "type": "template",
+      "purpose": "Formato de ficha de entregable.",
+      "activation_keywords": [
+        "plantilla entregables"
+      ],
+      "used_by": [
+        "deliverables"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_red_team",
+      "file": "06_TEMPLATES/TPL_RED_TEAM.md",
+      "type": "template",
+      "purpose": "Formato del informe Red Team con hallazgos clasificados.",
+      "activation_keywords": [
+        "informe red team"
+      ],
+      "used_by": [
+        "redteam"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "tpl_conclusion",
+      "file": "06_TEMPLATES/TPL_CONCLUSION_INTERNA.md",
+      "type": "template",
+      "purpose": "Formato del bloque interno breve para decisión del usuario.",
+      "activation_keywords": [
+        "conclusión interna",
+        "bloque interno"
+      ],
+      "used_by": [
+        "analyzer",
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "context_cost": "low",
+      "load_when": "Al producir la salida que formatea.",
+      "do_not_load_when": "Cuando no se va a producir esa salida."
+    },
+    {
+      "id": "chk_documentos",
+      "file": "07_CHECKLISTS/CHK_DOCUMENTOS.md",
+      "type": "checklist",
+      "purpose": "Control del inventario documental del expediente.",
+      "activation_keywords": [
+        "checklist documentos"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_solvencia",
+      "file": "07_CHECKLISTS/CHK_SOLVENCIA.md",
+      "type": "checklist",
+      "purpose": "Control de la validación de solvencia.",
+      "activation_keywords": [
+        "checklist solvencia"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_personal",
+      "file": "07_CHECKLISTS/CHK_PERSONAL.md",
+      "type": "checklist",
+      "purpose": "Control del análisis de personal y adscripción.",
+      "activation_keywords": [
+        "checklist personal"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_costes",
+      "file": "07_CHECKLISTS/CHK_COSTES.md",
+      "type": "checklist",
+      "purpose": "Control de identificación completa de costes.",
+      "activation_keywords": [
+        "checklist costes"
+      ],
+      "used_by": [
+        "budget"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_memoria",
+      "file": "07_CHECKLISTS/CHK_MEMORIA.md",
+      "type": "checklist",
+      "purpose": "Control de calidad de la memoria antes del Red Team.",
+      "activation_keywords": [
+        "checklist memoria"
+      ],
+      "used_by": [
+        "memory"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_sobres",
+      "file": "07_CHECKLISTS/CHK_SOBRES.md",
+      "type": "checklist",
+      "purpose": "Control de separación estricta de sobres.",
+      "activation_keywords": [
+        "checklist sobres"
+      ],
+      "used_by": [
+        "scoring",
+        "redteam"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_red_team",
+      "file": "07_CHECKLISTS/CHK_RED_TEAM.md",
+      "type": "checklist",
+      "purpose": "Control de ejecución completa de la revisión Red Team.",
+      "activation_keywords": [
+        "checklist red team"
+      ],
+      "used_by": [
+        "redteam"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "chk_presentacion",
+      "file": "07_CHECKLISTS/CHK_PRESENTACION_FINAL.md",
+      "type": "checklist",
+      "purpose": "Control final antes de la presentación de la oferta.",
+      "activation_keywords": [
+        "checklist presentación"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [],
+      "priority": "medium",
+      "context_cost": "low",
+      "load_when": "Al cerrar la fase que controla.",
+      "do_not_load_when": "Fuera de la fase que controla."
+    },
+    {
+      "id": "ej_analisis",
+      "file": "08_OUTPUT_EXAMPLES/EJEMPLO_ANALISIS_EXPEDIENTE.md",
+      "type": "example",
+      "purpose": "Ejemplo calibrado de análisis completo de expediente.",
+      "activation_keywords": [
+        "ejemplo análisis"
+      ],
+      "used_by": [
+        "analyzer"
+      ],
+      "dependencies": [
+        "tpl_resumen"
+      ],
+      "priority": "low",
+      "context_cost": "medium",
+      "load_when": "Como calibración antes de producir por primera vez esa salida.",
+      "do_not_load_when": "Cuando ya se conoce el formato; no cargar más de un ejemplo a la vez."
+    },
+    {
+      "id": "ej_economia",
+      "file": "08_OUTPUT_EXAMPLES/EJEMPLO_BASE_ECONOMICA.md",
+      "type": "example",
+      "purpose": "Ejemplo calibrado de base económica con escenarios.",
+      "activation_keywords": [
+        "ejemplo presupuesto"
+      ],
+      "used_by": [
+        "budget"
+      ],
+      "dependencies": [
+        "tpl_base_economica"
+      ],
+      "priority": "low",
+      "context_cost": "medium",
+      "load_when": "Como calibración antes de producir por primera vez esa salida.",
+      "do_not_load_when": "Cuando ya se conoce el formato; no cargar más de un ejemplo a la vez."
+    },
+    {
+      "id": "ej_indice",
+      "file": "08_OUTPUT_EXAMPLES/EJEMPLO_INDICE_MEMORIA.md",
+      "type": "example",
+      "purpose": "Ejemplo de índice de memoria trazado contra criterios.",
+      "activation_keywords": [
+        "ejemplo índice"
+      ],
+      "used_by": [
+        "memory"
+      ],
+      "dependencies": [
+        "tpl_memoria"
+      ],
+      "priority": "low",
+      "context_cost": "medium",
+      "load_when": "Como calibración antes de producir por primera vez esa salida.",
+      "do_not_load_when": "Cuando ya se conoce el formato; no cargar más de un ejemplo a la vez."
+    },
+    {
+      "id": "ej_apartado",
+      "file": "08_OUTPUT_EXAMPLES/EJEMPLO_APARTADO_MEMORIA.md",
+      "type": "example",
+      "purpose": "Ejemplo de apartado de memoria con ficha completa.",
+      "activation_keywords": [
+        "ejemplo apartado"
+      ],
+      "used_by": [
+        "memory"
+      ],
+      "dependencies": [
+        "tpl_memoria"
+      ],
+      "priority": "low",
+      "context_cost": "medium",
+      "load_when": "Como calibración antes de producir por primera vez esa salida.",
+      "do_not_load_when": "Cuando ya se conoce el formato; no cargar más de un ejemplo a la vez."
+    },
+    {
+      "id": "ej_redteam",
+      "file": "08_OUTPUT_EXAMPLES/EJEMPLO_RED_TEAM.md",
+      "type": "example",
+      "purpose": "Ejemplo de informe Red Team con hallazgos clasificados.",
+      "activation_keywords": [
+        "ejemplo red team"
+      ],
+      "used_by": [
+        "redteam"
+      ],
+      "dependencies": [
+        "tpl_red_team"
+      ],
+      "priority": "low",
+      "context_cost": "medium",
+      "load_when": "Como calibración antes de producir por primera vez esa salida.",
+      "do_not_load_when": "Cuando ya se conoce el formato; no cargar más de un ejemplo a la vez."
+    },
+    {
+      "id": "manifest",
+      "file": "09_BUILD/MANIFEST.json",
+      "type": "build",
+      "purpose": "Metadatos de todos los módulos para el enrutado selectivo.",
+      "activation_keywords": [
+        "manifest",
+        "metadatos"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [],
+      "priority": "critical",
+      "context_cost": "low",
+      "load_when": "Al enrutar, instalar o mantener el sistema.",
+      "do_not_load_when": "Durante la redacción de contenidos de oferta."
+    },
+    {
+      "id": "file_index",
+      "file": "09_BUILD/FILE_INDEX.md",
+      "type": "build",
+      "purpose": "Índice maestro legible de todos los archivos.",
+      "activation_keywords": [
+        "índice",
+        "listado de archivos"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [],
+      "priority": "critical",
+      "context_cost": "low",
+      "load_when": "Al enrutar, instalar o mantener el sistema.",
+      "do_not_load_when": "Durante la redacción de contenidos de oferta."
+    },
+    {
+      "id": "context_guide",
+      "file": "09_BUILD/CONTEXT_LOADING_GUIDE.md",
+      "type": "build",
+      "purpose": "Estrategia de recuperación selectiva y presupuesto de contexto.",
+      "activation_keywords": [
+        "contexto",
+        "qué cargar",
+        "tokens"
+      ],
+      "used_by": [
+        "router"
+      ],
+      "dependencies": [
+        "manifest"
+      ],
+      "priority": "critical",
+      "context_cost": "low",
+      "load_when": "Al enrutar, instalar o mantener el sistema.",
+      "do_not_load_when": "Durante la redacción de contenidos de oferta."
+    },
+    {
+      "id": "changelog",
+      "file": "09_BUILD/CHANGELOG.md",
+      "type": "build",
+      "purpose": "Historial de cambios del sistema.",
+      "activation_keywords": [
+        "changelog",
+        "versiones"
+      ],
+      "used_by": [],
+      "dependencies": [],
+      "priority": "critical",
+      "context_cost": "low",
+      "load_when": "Al enrutar, instalar o mantener el sistema.",
+      "do_not_load_when": "Durante la redacción de contenidos de oferta."
+    },
+    {
+      "id": "validation",
+      "file": "09_BUILD/VALIDATION_REPORT.md",
+      "type": "build",
+      "purpose": "Resultado de las 8 pruebas de validación del sistema.",
+      "activation_keywords": [
+        "validación",
+        "pruebas"
+      ],
+      "used_by": [],
+      "dependencies": [],
+      "priority": "critical",
+      "context_cost": "low",
+      "load_when": "Al enrutar, instalar o mantener el sistema.",
+      "do_not_load_when": "Durante la redacción de contenidos de oferta."
+    }
+  ]
+}

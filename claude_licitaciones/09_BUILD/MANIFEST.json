@@ -1,8 +1,8 @@
 {
   "project": "Sistema experto de licitaciones turísticas",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "language": "es-ES",
-  "generated": "2026-07-21",
+  "generated": "2026-07-22",
   "root": "claude_licitaciones/",
   "notes": "Fuente única de metadatos para el Knowledge Router. Mantener sincronizado con FILE_INDEX.md y CHANGELOG.md.",
   "modules": [
@@ -1106,6 +1106,34 @@
       "context_cost": "high",
       "load_when": "Cuando la materia del documento es objeto directo de la petición.",
       "do_not_load_when": "Cuando la materia no es objeto de la petición actual."
+    },
+    {
+      "id": "k_premium",
+      "file": "04_KNOWLEDGE/19_ESTANDAR_REDACCION_PREMIUM.md",
+      "type": "knowledge",
+      "purpose": "Estándar de redacción premium abstraído de memorias ganadoras reales; eleva K-02/K-03/K-17.",
+      "activation_keywords": [
+        "premium",
+        "estilo",
+        "memoria ganadora",
+        "calidad de redacción",
+        "acabado",
+        "instrumentos"
+      ],
+      "used_by": [
+        "memory",
+        "editorial"
+      ],
+      "dependencies": [
+        "k_memoria",
+        "k_evidencias",
+        "k_juicio_valor",
+        "k_editorial"
+      ],
+      "priority": "high",
+      "context_cost": "medium",
+      "load_when": "Al preparar índice o redactar apartados de memoria, junto con K-02 y K-03.",
+      "do_not_load_when": "En análisis, economía, solvencia o fases formales."
     },
     {
       "id": "pb_01",

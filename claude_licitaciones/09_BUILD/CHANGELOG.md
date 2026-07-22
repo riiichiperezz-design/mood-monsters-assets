@@ -6,6 +6,17 @@
 
 ---
 
+## [1.1.0] — 2026-07-22
+
+### Añadido
+- `04_KNOWLEDGE/19_ESTANDAR_REDACCION_PREMIUM.md` (K-19): estándar de redacción premium abstraído de memorias ganadoras reales de la empresa (calendario de eventos sostenibles/Gran Tour, emprendimiento EDUSI-FEDER, web de destino, dinamización DUSI), sin copiar contenido (RI-09). Define estructura espejo, instrumentos premium (matrices de decisión, casos brecha→medida→KPI, cuadros de mando, toolkits, ejemplos aplicados), disciplina de evidencia verificable, acabado editorial impecable y las 7 mejoras que el sistema aplica por encima de las referencias.
+- Workspace de Claude Code: `CLAUDE.md`, `.claude/skills/` (8 comandos), `expedientes/_PLANTILLA/`, `empresa/DATOS_EMPRESA.md`.
+- Presupuesto sobre plantilla de la empresa: `empresa/plantillas/PLANTILLA_oferta_economica.xlsx` (+ ejemplo Laciana); `/base-economica` rellena una copia por expediente.
+
+### Cambiado
+- `04_KNOWLEDGE/02` y `17` remiten a K-19 para el nivel de acabado. Skill `redactar-memoria` carga K-19 y aplica el acabado premium por apartado.
+- `MANIFEST.json` (98 módulos) y `FILE_INDEX.md` regenerados.
+
 ## [1.0.0] — 2026-07-21
 
 ### Añadido

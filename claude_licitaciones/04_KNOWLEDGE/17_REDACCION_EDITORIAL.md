@@ -5,7 +5,7 @@
 > **Cuándo no cargarlo:** en fases de análisis, economía o estrategia.
 > **Skills que lo utilizan:** 14_EDITORIAL_WRITER, 03_MEMORY_WRITER.
 > **Palabras clave:** estilo, redacción, tono, claridad, legibilidad.
-> **Dependencias:** REGLAS_INVIOLABLES (RI-16, RI-18).
+> **Dependencias:** REGLAS_INVIOLABLES (RI-16, RI-18). Para el nivel de acabado en memorias, ver **K-19 (estándar premium)**, que eleva esta guía.
 > **Prioridad:** media. **Coste de contexto:** medio.
 > **Resumen:** guía de estilo del sistema: los principios del texto que se evalúa bien (frase activa, sujeto responsable, dato antes que adjetivo), la lista negra del lenguaje de consultoría vacío con sus sustituciones, las reglas de párrafo y jerarquía para lectura en diagonal, el tratamiento del vocabulario del pliego como terminología intocable, las convenciones tipográficas y de números en español de España, y la disciplina de invariantes que hace segura cualquier edición.
 

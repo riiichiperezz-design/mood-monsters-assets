@@ -5,7 +5,7 @@
 > **Cuándo no cargarlo:** durante la redacción de contenidos; el Router ya conoce el mapa.
 > **Skills que lo utilizan:** 00_KNOWLEDGE_ROUTER.
 > **Prioridad:** crítica. **Coste de contexto:** bajo.
-> **Resumen:** listado completo de los 97 módulos del sistema con su tipo, propósito, prioridad y coste de contexto, agrupados por carpeta. Es la vista humana del manifiesto: cualquier alta, baja o cambio de un archivo debe reflejarse aquí y en MANIFEST.json en el mismo cambio. El Knowledge Router lo usa como tabla de enrutado rápida cuando necesita decidir qué documentos consultar sin cargar el JSON completo.
+> **Resumen:** listado completo de los 98 módulos del sistema con su tipo, propósito, prioridad y coste de contexto, agrupados por carpeta. Es la vista humana del manifiesto: cualquier alta, baja o cambio de un archivo debe reflejarse aquí y en MANIFEST.json en el mismo cambio. El Knowledge Router lo usa como tabla de enrutado rápida cuando necesita decidir qué documentos consultar sin cargar el JSON completo.
 
 
 ## 00_README — Documentación general
@@ -84,6 +84,7 @@
 | `16_VISUALES_Y_DIAGRAMAS.md` | knowledge | Criterios y técnicas para visuales que aportan puntuación. | medium | high |
 | `17_REDACCION_EDITORIAL.md` | knowledge | Estilo editorial: claridad, verbos de acción, jerarquía y tono ejecutivo. | medium | high |
 | `18_CONTRATACION_PUBLICA_ESPAÑOLA.md` | knowledge | Marco LCSP: procedimientos, plazos, sobres, solvencia, bajas y recursos. | medium | high |
+| `19_ESTANDAR_REDACCION_PREMIUM.md` | knowledge | Estándar de redacción premium abstraído de memorias ganadoras reales; eleva K-02/K-03/K-17. | high | medium |
 
 ## 05_PLAYBOOKS_TURISMO — Playbooks turísticos
 

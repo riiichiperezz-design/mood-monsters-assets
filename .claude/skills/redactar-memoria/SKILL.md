@@ -11,7 +11,7 @@ Ejecuta los estados 11-12. **Precondiciones (RI-12/13/20):** deben existir `01_a
 
 - `claude_licitaciones/02_SKILLS/03_MEMORY_WRITER.md`
 - `claude_licitaciones/03_WORKFLOWS/WF_07_MEMORIA_TECNICA.md`
-- `claude_licitaciones/04_KNOWLEDGE/02_ARQUITECTURA_MEMORIA_TECNICA.md` y `03_INGENIERIA_DE_EVIDENCIAS.md`
+- `claude_licitaciones/04_KNOWLEDGE/02_ARQUITECTURA_MEMORIA_TECNICA.md`, `03_INGENIERIA_DE_EVIDENCIAS.md` y **`19_ESTANDAR_REDACCION_PREMIUM.md`** (vara de medir de la calidad de redacción)
 - `claude_licitaciones/06_TEMPLATES/TPL_MEMORIA_TECNICA.md`
 - `claude_licitaciones/07_CHECKLISTS/CHK_MEMORIA.md` y `CHK_SOBRES.md`
 - **Un solo** playbook sectorial según la tipología identificada (`05_PLAYBOOKS_TURISMO/PB_0X…`).
@@ -22,7 +22,7 @@ Ejecuta los estados 11-12. **Precondiciones (RI-12/13/20):** deben existir `01_a
 1. **Índice primero (estado 11):** propón la tabla índice↔criterios↔páginas↔insumos e identifica la información interna pendiente. Respeta los límites formales del pliego (páginas, tipografía, estructura, anonimato). **Pide aprobación del índice** antes de redactar (RI-20).
 2. **Redacta por lotes** de 2-4 apartados con la ficha estándar (objetivo, propuesta concreta, método, entregables, indicadores, coordinación, riesgos, trazabilidad con el pliego).
 3. **Controles permanentes por lote:** CHK_SOBRES (nada de precio ni mejoras automáticas, RI-05/06), compromisos contra la base económica (RI-07), nada sin validar (usa `[PENDIENTE]`), contador de páginas vivo.
-4. Nada de contenido genérico (RI-16); específico del contrato y del destino.
+4. **Acabado premium (K-19):** cada apartado de peso lleva promesa de apertura, adaptación explícita al destino, un instrumento premium (matriz de decisión, caso brecha→medida→KPI, cuadro de mando o ficha), compromiso medible y cierre de trazabilidad. Evidencia siempre con cifra/referencia verificable; acabado editorial impecable (cero erratas, terminología uniforme). Nada de contenido genérico ni capítulos de "quiénes somos" no puntuados (RI-16).
 
 ## Salida
 

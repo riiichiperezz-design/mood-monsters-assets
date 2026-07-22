@@ -5,7 +5,7 @@
 > **Cuándo no cargarlo:** en análisis, presupuesto o revisión formal.
 > **Skills que lo utilizan:** 03_MEMORY_WRITER.
 > **Palabras clave:** arquitectura memoria, estructura memoria, índice, apartados.
-> **Dependencias:** K-05 (juicio de valor), TPL_MEMORIA_TECNICA.
+> **Dependencias:** K-05 (juicio de valor), TPL_MEMORIA_TECNICA. Para el acabado premium (instrumentos, evidencia y voz), ver **K-19**.
 > **Prioridad:** media. **Coste de contexto:** alto.
 > **Resumen:** cómo se construye una memoria que puntúa: índice espejo de los criterios, reparto de páginas por puntos, patrón de apartado (contexto mínimo → propuesta concreta → cómo se ejecuta → cómo se demuestra), arquitectura de niveles de lectura para evaluadores con poco tiempo, uso de elementos de anclaje (tablas, fichas, visuales) y patrones estructurales por tipo de servicio. Abstrae los rasgos comunes de las memorias ganadoras de consultoría turística: concreción operativa, trazabilidad visible y compromisos medibles.
 

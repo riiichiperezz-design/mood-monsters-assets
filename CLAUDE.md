@@ -32,7 +32,7 @@ El ciclo de vida completo (estados 0-17) está en `claude_licitaciones/03_WORKFL
 | `/analizar-expediente` | 1-3 | PDFs en `00_pliegos/` | `01_analisis/analisis.md` |
 | `/validar-solvencia` | 4-5 | análisis + datos empresa | `01_analisis/solvencia.md` |
 | `/estrategia-puntuacion` | 6,10 | análisis | `01_analisis/criterios.md` |
-| `/base-economica` | 7-9 | análisis + tarifas | `02_economico/base_economica.md` |
+| `/base-economica` | 7-9 | análisis + tarifas | `02_economico/oferta_economica.xlsx` (plantilla de la empresa) + `base_economica.md` |
 | `/redactar-memoria` | 11-12 | criterios + base econ. | `03_memoria/memoria.md` |
 | `/red-team` | 13-14 | borrador de memoria | `04_revision/red_team.md` |
 | `/cierre-presentacion` | 16-17 | oferta corregida | `04_revision/checklist_final.md` |
@@ -48,6 +48,10 @@ No leas toda `claude_licitaciones/` de golpe. Sigue `claude_licitaciones/09_BUIL
 ## DATOS DE LA EMPRESA
 
 Si existe `empresa/DATOS_EMPRESA.md`, léelo para validar solvencia, personal, tarifas y referencias. **Solo es válido lo que conste ahí o confirme el usuario** (RI-02/03/04). Si falta un dato, formula preguntas cerradas o deja variables abiertas `[PENDIENTE]`; nunca lo inventes.
+
+## PRESUPUESTO CON PLANTILLA DE LA EMPRESA
+
+La oferta económica **se prepara siempre rellenando la plantilla Excel de la empresa**: `empresa/plantillas/PLANTILLA_oferta_economica.xlsx` (ejemplo resuelto: `EJEMPLO_Oferta_Laciana.xlsx`). Para cada licitación, `/base-economica` copia la plantilla a `02_economico/oferta_economica.xlsx` y **solo cambia los datos de coste** (conceptos, unidades, costes, horas) y las palancas (coste/hora `K2`, meses `M2`, Presupuesto sin IVA `G4`, bajada `G6`); las fórmulas no se tocan. Lógica: Coste = directos + horas; Oferta = Presupuesto × (1 − bajada); Margen = Beneficio / Oferta. El Excel es de uso interno y **nunca va a la memoria** (RI-05).
 
 ## CONVENCIÓN DE CARPETAS
 

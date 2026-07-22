@@ -37,7 +37,15 @@ El ciclo de vida completo (estados 0-17) está en `claude_licitaciones/03_WORKFL
 | `/red-team` | 13-14 | borrador de memoria | `04_revision/red_team.md` |
 | `/cierre-presentacion` | 16-17 | oferta corregida | `04_revision/checklist_final.md` |
 
-**Orden obligatorio (no saltar):** análisis → solvencia/criterios → economía → **decisión del usuario** → memoria → red team → cierre. Si se pide una fase adelantada sin las previas, detente, explícalo y ejecuta primero lo mínimo pendiente (RI-12/13/20).
+**Orden obligatorio (no saltar):**
+
+1. **Analizar** el expediente (`/analizar-expediente`).
+2. **¿Cumplimos y tiene sentido seguir?** solvencia y personal (`/validar-solvencia`) + criterios (`/estrategia-puntuacion`). Si no cumplimos solvencia o personal, se dice y **el usuario decide** si seguir (RI-11) — **puerta 1**.
+3. **Presupuesto** (`/base-economica`): solo después de lo anterior (RI-13).
+4. **Puerta 2 — el presupuesto tiene que cuadrar:** solo si el presupuesto sale **rentable** y el usuario decide avanzar, se pasa a la memoria. Si no cuadra (margen por debajo del mínimo de la empresa), **NO se redacta memoria**: se dice y se ofrece ajustar (alcance, precio, equipo) o desestimar. La decisión es del usuario (RI-11).
+5. **Memoria** (`/redactar-memoria`) → **red team** (`/red-team`) → **cierre** (`/cierre-presentacion`).
+
+La memoria es siempre **lo último** y va condicionada a que antes cuadre todo. Si se pide una fase adelantada sin las previas (p. ej. la memoria sin presupuesto), detente, explícalo y ejecuta primero lo mínimo pendiente (RI-12/13/20).
 
 **Extracción rápida obligatoria:** al analizar, la primera salida son siempre estos 6 puntos en orden: 1) plazos de ejecución, 2) puntos por precio, 3) puntos por mejora, 4) puntos por memoria, 5) solvencia económica, 6) solvencia técnica.
 

@@ -5,7 +5,15 @@ description: Prepara el índice y redacta la memoria técnica (oferta técnica) 
 
 # Redactar memoria técnica
 
-Ejecuta los estados 11-12. **Precondiciones (RI-12/13/20):** deben existir `01_analisis/criterios.md` y `02_economico/base_economica.md`, y el usuario debe haber decidido avanzar. Si falta la estrategia de criterios, ejecútala antes (`/estrategia-puntuacion`).
+Ejecuta los estados 11-12. **La memoria es lo último del ciclo y solo se redacta cuando todo lo anterior ha cuadrado.**
+
+**Precondiciones (RI-12/13/20) — verificar antes de escribir una sola línea:**
+1. Existe el análisis y la solvencia/personal salió viable (o el usuario asumió expresamente los huecos): `01_analisis/analisis.md`, `01_analisis/solvencia.md`.
+2. Existe la estrategia de criterios: `01_analisis/criterios.md` (si falta, ejecuta `/estrategia-puntuacion` antes).
+3. Existe el presupuesto y **cuadra**: `02_economico/oferta_economica.xlsx` + `base_economica.md` con un margen igual o superior al mínimo de la empresa. **Si el presupuesto no cuadra, NO redactes la memoria**: dilo, muestra el margen y ofrece ajustar (alcance/precio/equipo) o desestimar (RI-11).
+4. El usuario ha **decidido avanzar** tras ver los números.
+
+Si falta cualquiera de las cuatro, detente y resuelve primero lo pendiente; no adelantes la memoria.
 
 ## Archivos a cargar
 

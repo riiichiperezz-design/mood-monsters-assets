@@ -11,6 +11,16 @@
 
 ---
 
+## 0. Principio rector: cada memoria es única (patrón, no molde)
+
+**Este documento es una referencia de patrones y de nivel, nunca una plantilla a replicar.** Cada memoria se construye a la medida de lo que **exige ese pliego** y de lo que **puntúa el juicio de valor en cada criterio concreto** (RI-01, RI-09, RI-16). Por tanto:
+
+- La estructura la fija el **índice espejo de los criterios del pliego** (K-02), no las secciones de una memoria anterior.
+- Qué instrumentos, qué profundidad y qué evidencia lleva cada apartado se decide por **lo que recompensa el juicio de valor de ese punto** (K-05, matriz de criterios), no por costumbre.
+- Las memorias ganadoras aportan el **cómo** (nivel, método, acabado), no el **qué** (el qué lo manda el pliego actual). Ningún contenido, dato o instrumento se traslada solo porque funcionó en otra.
+
+Todo lo que sigue son herramientas para desplegar **donde el pliego y el criterio lo pidan**.
+
 ## 1. Qué distingue a una memoria premium (síntesis de las referencias)
 
 De las memorias ganadoras analizadas se abstraen dos generaciones de estilo. El sistema toma lo mejor de ambas:
@@ -45,7 +55,7 @@ Son los elementos que un evaluador recuerda y puede citar en su motivación:
 - **Toolkit reutilizable / capacidad instalada.** Materiales que "quedan implantados" en el órgano tras el contrato (plantillas, manuales, repositorios): conecta con transferencia (K-15) y es un diferencial potente.
 - **Arquitectura por capas** (cuando hay componente tecnológico): datos → tecnología → canales, con estándares citados.
 
-Regla: **al menos un instrumento premium por apartado de peso**, siempre con función informativa (RI-16), nunca relleno visual.
+Regla: el instrumento de cada apartado **se elige según lo que valora ese criterio** (K-05) — una matriz donde el pliego premia justificar una selección, un cuadro de mando donde valora el seguimiento, un caso aplicado donde valora el dominio operativo. Al menos uno en los apartados de peso, **solo si el juicio de valor de ese punto lo recompensa** y siempre con función informativa (RI-16); nunca por rellenar ni por imitar otra memoria.
 
 ## 4. Evidencia premium (disciplina sobre la fortaleza de las clásicas)
 
@@ -71,7 +81,7 @@ Una de las referencias es una memoria casi íntegramente diseñada (infografías
 ## 7. Las 7 mejoras que este sistema aplica POR ENCIMA de las referencias
 
 1. **Índice espejo estricto** de todos los criterios y subcriterios, con reparto de páginas por puntos (no solo de las secciones "bonitas").
-2. **Un instrumento premium por apartado de peso**, no solo en los apartados estrella.
+2. **Un instrumento premium en cada apartado de peso donde el criterio lo valore**, no solo en los apartados estrella (pero nunca forzado donde el juicio de valor no lo recompense).
 3. **Trazabilidad visible** apartado→criterio→cláusula en cada sección (las referencias no siempre la hacen explícita).
 4. **Evidencia siempre etiquetada y verificable**; nada de afirmaciones sin cifra ni referencia.
 5. **Acabado editorial impecable** (cero erratas/OCR; terminología uniforme) — control del Red Team.

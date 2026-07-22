@@ -1,0 +1,13 @@
+# Trabajo real de expedientes (PDF de pliegos y economía interna): no se versiona por defecto.
+# Si quieres respaldar un expediente concreto, fuérzalo: git add -f expedientes/<NOMBRE>/...
+expedientes/*
+!expedientes/_PLANTILLA/
+!expedientes/_PLANTILLA/**
+
+# Datos de empresa con información sensible (tarifas, referencias):
+# el template se versiona; si lo rellenas con datos reales y no quieres subirlos, descomenta:
+# empresa/DATOS_EMPRESA.md
+
+# Temporales
+.DS_Store
+*.tmp
